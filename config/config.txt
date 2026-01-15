@@ -1,0 +1,42 @@
+설정한 내용은 아래와 같다.
+
+서비스 파일을 작성했다. 24시간 봇을 위해서
+경로 == sudo nano /etc/systemd/system/discordbot.service
+
+[Unit]
+Description=Discord Study Bot Service (Study Period)
+After=network.target
+
+[Service]
+# ubuntu 사용자로 실행
+User=ubuntu
+WorkingDirectory=/home/ubuntu
+# 봇 실행 경로
+ExecStart=/usr/bin/python3 /home/ubuntu/study_bot.py
+# 오류 시 자동 재시작
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+서비스 활성을 위한 코드는 아래와 같다.
+# 1. 시스템 설정 새로고침
+sudo systemctl daemon-reload
+
+# 2. 부팅 시 자동 시작 설정
+sudo systemctl enable discordbot
+
+# 3. 지금 바로 봇 시작
+sudo systemctl start discordbot
+
+
+
+
+Log 는 아래와 같이 남았다.
+ sudo systemctl daemon-reload
+ubuntu@20260115-instance:~/discord/config$ sudo systemctl enable discordbot
+Created symlink /etc/systemd/system/multi-user.target.wants/discordbot.service → /etc/systemd/system/discordbot.service.
+ubuntu@20260115-instance:~/discord/config$ sudo systemctl start discordbot

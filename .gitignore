@@ -1,0 +1,7 @@
+cat <<EOF > .gitignore
+*.db
+*.swp
+.env
+__pycache__/
+EOF
+.env
